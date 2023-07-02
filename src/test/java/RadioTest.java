@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.netology.radio.Radio;
 
 public class RadioTest {
 
@@ -7,8 +8,31 @@ public class RadioTest {
     public void testNextRadioStation() {
         Radio station = new Radio();
 
-        station.nextCurrentStation(9);
+        station.nextCurrentStation(-1);
+        int expected = 9;
+        int actual = station.getCurrentStation();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testNextRadioStation1() {
+        Radio station = new Radio();
+
+        station.nextCurrentStation(11);
         int expected = 0;
+        int actual = station.getCurrentStation();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testNextRadioStation2() {
+        Radio station = new Radio();
+
+        station.nextCurrentStation(0);
+        int expected = 1;
         int actual = station.getCurrentStation();
 
         System.out.println(actual);
@@ -19,9 +43,31 @@ public class RadioTest {
     public void testPrevRadioStation() {
         Radio station = new Radio();
 
+        station.prevCurrentStation(10);
+        int expected = 0;
+        int actual = station.getCurrentStation();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testPrevRadioStation1() {
+        Radio station = new Radio();
+
         station.prevCurrentStation(0);
         int expected = 9;
-        int actual = station.currentStation;
+        int actual = station.getCurrentStation();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testPrevRadioStation2() {
+        Radio station = new Radio();
+
+        station.prevCurrentStation(-1);
+        int expected = 9;
+        int actual = station.getCurrentStation();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
@@ -32,7 +78,7 @@ public class RadioTest {
 
         station.setCurrentStation(-1);
         int expected = 0;
-        int actual = station.currentStation;
+        int actual = station.getCurrentStation();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
@@ -44,55 +90,124 @@ public class RadioTest {
 
         station.setCurrentStation(10);
         int expected = 0;
-        int actual = station.currentStation;
+        int actual = station.getCurrentStation();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void selectHigherVolume(){
+    public void selectRadioStation() {
         Radio station = new Radio();
 
-        station.setCurrentVolume(101);
+        station.setCurrentStation(5);
+        int expected = 5;
+        int actual = station.getCurrentStation();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void selectHigherVolume () {
+        Radio volume = new Radio();
+
+        volume.setCurrentVolume(101);
         int expected = 0;
-        int actual = station.currentVolume;
+        int actual = volume.getCurrentVolume();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void selectLessVolume(){
-        Radio station = new Radio();
+    public void selectLessVolume () {
+        Radio volume = new Radio();
 
-        station.setCurrentVolume(-1);
+        volume.setCurrentVolume(-1);
         int expected = 0;
-        int actual = station.currentVolume;
+        int actual = volume.getCurrentVolume();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void increaseVolume(){
-        Radio station = new Radio();
+    public void selectVolume () {
+        Radio volume = new Radio();
 
-        station.increaseCurrentVolume(100);
+        volume.setCurrentVolume(50);
+        int expected = 50;
+        int actual = volume.getCurrentVolume();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void increaseVolume () {
+        Radio volume = new Radio();
+
+        volume.increaseCurrentVolume(101);
         int expected = 100;
-        int actual = station.currentVolume;
+        int actual = volume.getCurrentVolume();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void increaseVolume1 () {
+        Radio volume = new Radio();
+
+        volume.increaseCurrentVolume(-1);
+        int expected = 0;
+        int actual = volume.getCurrentVolume();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void reduceVolume(){
-        Radio station = new Radio();
+    public void increaseVolume2 () {
+        Radio volume = new Radio();
 
-        station.reduceCurrentVolume(0);
+        volume.increaseCurrentVolume(50);
+        int expected = 51;
+        int actual = volume.getCurrentVolume();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void reduceVolume () {
+        Radio volume = new Radio();
+
+        volume.reduceCurrentVolume(50);
+        int expected = 49;
+        int actual = volume.getCurrentVolume();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void reduceVolume1 () {
+        Radio volume = new Radio();
+
+        volume.reduceCurrentVolume(-1);
         int expected = 0;
-        int actual = station.currentVolume;
+        int actual = volume.getCurrentVolume();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void reduceVolume2 () {
+        Radio volume = new Radio();
+
+        volume.reduceCurrentVolume(101);
+        int expected = 100;
+        int actual = volume.getCurrentVolume();
 
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
