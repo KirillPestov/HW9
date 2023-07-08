@@ -57,4 +57,14 @@ public class RadioTest {
         System.out.println(actual);
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void RadioStation() {
+        Radio station = new Radio(20);
+        station.setCurrentStation(19);
+        int expected = 19;
+        int actual = station.getCurrentStation();
+
+        System.out.println(actual);
+        Assertions.assertEquals(expected, actual);
+    }
 }
